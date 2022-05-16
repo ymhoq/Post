@@ -171,7 +171,7 @@ public class CarDAO implements ICarsDAO {
 	}
 
 	@Override
-	public List<Car> getAddressById(long id) {
+	public List<Car> getAllCars(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

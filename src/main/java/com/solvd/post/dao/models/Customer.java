@@ -7,8 +7,9 @@ public class Customer {
 	private String lastName;
 	private Address address;
 
-	public Customer() {}
-	
+	public Customer() {
+	}
+
 	public Customer(long id, String firstName, String lastName, Address address) {
 		super();
 		this.id = id;

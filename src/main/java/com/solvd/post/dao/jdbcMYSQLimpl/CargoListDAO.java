@@ -75,10 +75,10 @@ public class CargoListDAO implements ICargoListDAO {
 					pre.setLong(1, id);
 
 					try (ResultSet rs = pre.executeQuery()) {
-
+						PackageDAO pD = new PackageDAO();
 						while (rs.next()) {
 							cargolist.setId(rs.getLong("id"));
-							cargolist.getPackages().add(new PackageBox(rs.getInt("Packages_id")));
+							cargolist.setPackages(pD.getAllPackages(rs.getInt("Packages_id")));
 						}
 						rs.close();
 						pre.close();
@@ -168,7 +168,7 @@ public class CargoListDAO implements ICargoListDAO {
 	}
 
 	@Override
-	public List<CargoList> getCargoListById(int id) {
+	public List<CargoList> getAllCargoLists(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

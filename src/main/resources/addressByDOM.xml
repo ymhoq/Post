@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Address xmlns="project.POST">
+  <Address id="2">
+    <address> 55 k 70</address>
+    <district>Zubr</district>
+    <postalCode>44020</postalCode>
+    <City id="2">
+      <name>Stogholm</name>
+      <Country id="2">
+        <name>Sweden</name>
+      </Country>
+    </City>
+  </Address>
+</Address>

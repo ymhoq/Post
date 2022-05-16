@@ -9,12 +9,13 @@ public class PackageBox {
 	private Category category;
 	private Order order;
 
-	public PackageBox() {}
-	
+	public PackageBox() {
+	}
+
 	public PackageBox(long id) {
 		this.id = id;
 	}
-	
+
 	public PackageBox(long id, String options, int insuranceAmount, String status, Category category, Order order) {
 		this.id = id;
 		this.options = options;

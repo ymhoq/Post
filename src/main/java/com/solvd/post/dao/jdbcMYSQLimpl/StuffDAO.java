@@ -2,6 +2,7 @@ package com.solvd.post.dao.jdbcMYSQLimpl;
 
 import java.io.IOException;
 
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,13 +14,12 @@ import java.util.List;
 import java.util.Properties;
 
 import com.solvd.post.dao.IStuffsDAO;
-import com.solvd.post.dao.models.PostalOffice;
 import com.solvd.post.dao.models.Stuff;
 
 public class StuffDAO implements IStuffsDAO {
 
-	 Stuff stuff = new Stuff();
-   
+	Stuff stuff = new Stuff();
+
 	@Override
 	public void createEntity(Stuff data) {
 		Properties p = new Properties();
@@ -35,7 +35,8 @@ public class StuffDAO implements IStuffsDAO {
 			try (Connection con = DriverManager.getConnection(url, username, password)) {
 
 				try (PreparedStatement pre = con.prepareStatement(
-						"INSERT INTO stuffs (firstName, lastName, position, phoneNumberl, PostalOffices_id)" + "VALUES (?,?,?,?,?);")) {
+						"INSERT INTO stuffs (firstName, lastName, position, phoneNumberl, PostalOffices_id)"
+								+ "VALUES (?,?,?,?,?);")) {
 
 					pre.setString(1, stuff.getFirstName());
 					pre.setString(2, stuff.getLastName());
@@ -56,7 +57,6 @@ public class StuffDAO implements IStuffsDAO {
 		} finally {
 
 		}
-
 
 	}
 
@@ -166,9 +166,9 @@ public class StuffDAO implements IStuffsDAO {
 
 					pre.setLong(1, id);
 					pre.executeUpdate();
-		
-						pre.close();
-						con.close();
+
+					pre.close();
+					con.close();
 				}
 			}
 		} catch (SQLException | IOException e) {
@@ -184,7 +184,7 @@ public class StuffDAO implements IStuffsDAO {
 	public List<Stuff> getAllStuffs() {
 
 		List<Stuff> allStuffs = new ArrayList<Stuff>();
-		
+
 		Properties p = new Properties();
 		try (InputStream resourceStream = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("db.properties")) {
@@ -202,7 +202,7 @@ public class StuffDAO implements IStuffsDAO {
 					try (ResultSet rs = pre.executeQuery()) {
 
 						while (rs.next()) {
-							
+
 							stuff.setId(rs.getInt("id"));
 							stuff.setFirstName(rs.getString("firstName"));
 							stuff.setLastName(rs.getString("lastName"));
@@ -230,9 +230,9 @@ public class StuffDAO implements IStuffsDAO {
 	}
 
 	@Override
-	public List<Stuff> getAllStuffsByPostalOffice(PostalOffice po) {
+	public List<Stuff> getAllStuffsByPostalOffice(long pOffice) {
 		List<Stuff> allStuffs = new ArrayList<Stuff>();
-		
+
 		Properties p = new Properties();
 		try (InputStream resourceStream = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("db.properties")) {
@@ -245,14 +245,15 @@ public class StuffDAO implements IStuffsDAO {
 
 			try (Connection con = DriverManager.getConnection(url, username, password)) {
 
-				try (PreparedStatement pre = con.prepareStatement("SELECT * FROM postmodel.stuffs WHERE PostalOffices_id = ?")) {
+				try (PreparedStatement pre = con
+						.prepareStatement("SELECT * FROM postmodel.stuffs WHERE PostalOffices_id = ?")) {
 
-					pre.setLong(1, po.getId());
-					
+					pre.setLong(1, pOffice);
+
 					try (ResultSet rs = pre.executeQuery()) {
 
 						while (rs.next()) {
-							
+
 							stuff.setId(rs.getInt("id"));
 							stuff.setFirstName(rs.getString("firstName"));
 							stuff.setLastName(rs.getString("lastName"));

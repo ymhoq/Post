@@ -32,8 +32,8 @@ public class PostalOfficesDAO implements IPostalOfficesDAO {
 
 			try (Connection con = DriverManager.getConnection(url, username, password)) {
 
-				try (PreparedStatement pre = con.prepareStatement(
-						"INSERT INTO postaloffices (phone, type, Address_id)" + "VALUES (?,?,?);")) {
+				try (PreparedStatement pre = con
+						.prepareStatement("INSERT INTO postaloffices (phone, type, Address_id)" + "VALUES (?,?,?);")) {
 
 					pre.setInt(1, postalOffice.getPhone());
 					pre.setString(2, postalOffice.getType());
@@ -56,7 +56,7 @@ public class PostalOfficesDAO implements IPostalOfficesDAO {
 	}
 
 	@Override
-	public PostalOffice getEntity(long id)  {
+	public PostalOffice getEntity(long id) {
 
 		Properties p = new Properties();
 		try (InputStream resourceStream = Thread.currentThread().getContextClassLoader()
@@ -70,17 +70,18 @@ public class PostalOfficesDAO implements IPostalOfficesDAO {
 
 			try (Connection con = DriverManager.getConnection(url, username, password)) {
 
-				try (PreparedStatement pre = con.prepareStatement("SELECT * FROM postmodel.postaloffices WHERE id = ?")) {
+				try (PreparedStatement pre = con
+						.prepareStatement("SELECT * FROM postmodel.postaloffices WHERE id = ?")) {
 
 					pre.setLong(1, id);
 
 					try (ResultSet rs = pre.executeQuery()) {
-
+						AddressDAO addressD = new AddressDAO();
 						while (rs.next()) {
 							postalOffice.setId(rs.getLong("id"));
 							postalOffice.setPhone(rs.getInt("phone"));
 							postalOffice.setType(rs.getString("type"));
-							postalOffice.getAddress().setId(rs.getInt("Address_id"));
+							postalOffice.setAddress(addressD.getEntity(rs.getInt("Address_id")));
 						}
 						rs.close();
 						pre.close();
@@ -157,9 +158,9 @@ public class PostalOfficesDAO implements IPostalOfficesDAO {
 
 					pre.setLong(1, id);
 					pre.executeUpdate();
-		
-						pre.close();
-						con.close();
+
+					pre.close();
+					con.close();
 				}
 			}
 		} catch (SQLException | IOException e) {
@@ -172,7 +173,7 @@ public class PostalOfficesDAO implements IPostalOfficesDAO {
 	}
 
 	@Override
-	public List<PostalOffice> getIPostalOfficesById(long id) {
+	public List<PostalOffice> getAllPostalOffices(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -8,13 +8,14 @@ public class Payment {
 	private int amount;
 	private Date date;
 
-	public Payment() {}
-	
+	public Payment() {
+	}
+
 	public Payment(long id, int amount, Date date) {
 		this.id = id;
 		this.amount = amount;
 		this.date = date;
-		
+
 	}
 
 	public long getId() {

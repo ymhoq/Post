@@ -6,10 +6,11 @@ public class City {
 	private Country country;
 
 	public City() {
-		country = new Country();
 	}
 	
-	
+	public City(Country country) {
+		this.country = country;
+	}
 
 	public City(long id, String cityName, Country country) {
 		this.id = id;
@@ -37,7 +38,7 @@ public class City {
 		return country;
 	}
 
-	public void setCountryId(Country country) {
+	public void setCountry(Country country) {
 		this.country = country;
 	}
 

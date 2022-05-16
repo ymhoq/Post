@@ -7,5 +7,5 @@ import com.solvd.post.dao.models.Customer;
 
 public interface ICustomersDAO extends IBaseDAO<Customer> {
 
-	List<Customer> getCustomersById(long id);
+	List<Customer> getAllCustomers(long id);
 }

@@ -13,25 +13,24 @@ public class Executer {
 
 	public static void main(String[] args) {
 
-		Address a = new Address();
+//		Address a = new Address();
 
-		AddressDAO aDAO = new AddressDAO();
-		a = aDAO.getEntity(1);
-		System.out.println(a.getAddress());
-		a.setAddress("12 k 51");
-		aDAO.updateEntity(a);
+//	AddressDAO aDAO = new AddressDAO();
+//	a = aDAO.getEntity(1);
+		// System.out.println(a.getAddress());
+		// a.setAddress("12 k 51");
+		// aDAO.updateEntity(a);
 
-		aDAO.createEntity(a);
+		// aDAO.createEntity(a);
 
-		aDAO.removeEntity(11);
+		// aDAO.removeEntity(11);
 
-		aDAO.getAllAddress().forEach(System.out::println);
+		// aDAO.getAllAddress().forEach(System.out::println);
 
+//		TestDOM.mainDOM();
 
-		
-		//TestDOM.mainDOM(args);
-
-		TextJAXB.writerToXML();
+		// TextJAXB.writerToXML();
+		// System.out.println(TextJAXB.readerFromXml());
 	}
 
 }

@@ -82,13 +82,16 @@ public class OrderDAO implements IOrdersDAO {
 
 					try (ResultSet rs = pre.executeQuery()) {
 
+						PaymentDAO pD = new PaymentDAO();
+						StuffDAO sD = new StuffDAO();
+						
 						while (rs.next()) {
 							order.setId(rs.getLong("id"));
 							order.setCreateDate(rs.getDate("createDate"));
 							order.setSenderId(rs.getInt("sender_id"));
 							order.setRecipientId(rs.getInt("recepient_id"));
-						//	order.getPayment().setId(rs.getLong("Payments_id"));
-						//	order.getStuff().setId(rs.getInt("Stuffs_id"));
+							order.setPayment(pD.getEntity(rs.getLong("Payments_id")));
+							order.setStuff(sD.getEntity(rs.getInt("Stuffs_id")));
 						}
 						rs.close();
 						pre.close();
@@ -180,7 +183,7 @@ public class OrderDAO implements IOrdersDAO {
 	}
 
 	@Override
-	public List<Order> getAllOrdersByCustomer(long id) {
+	public List<Order> getAllOrders(long id) {
 
 		List<Order> allOrdersByCustomer = new ArrayList<Order>();
 

@@ -163,7 +163,7 @@ public class CountryDAO implements ICountrysDAO {
 	}
 
 	@Override
-	public List<Country> getCountryessById(int id) {
+	public List<Country> getAllCountryess(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

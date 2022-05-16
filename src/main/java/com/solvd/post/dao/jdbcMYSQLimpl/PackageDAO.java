@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.solvd.post.dao.IPackagesDAO;
+import com.solvd.post.dao.models.Address;
 import com.solvd.post.dao.models.PackageBox;
 
 public class PackageDAO implements IPackagesDAO {
@@ -80,13 +81,16 @@ public class PackageDAO implements IPackagesDAO {
 
 					try (ResultSet rs = pre.executeQuery()) {
 
+						CategoryDAO catD = new CategoryDAO();
+						OrderDAO oD = new OrderDAO();
+
 						while (rs.next()) {
 							pack.setId(rs.getLong("id"));
 							pack.setOptions(rs.getString("options"));
 							pack.setInsuranceAmount(rs.getInt("insuranceAmount"));
 							pack.setStatus(rs.getString("status"));
-							pack.getCategory().setId(rs.getInt("Categorys_Id"));
-							pack.getOrder().setId(rs.getInt("Orders_Id"));
+							pack.setCategory(catD.getEntity(rs.getInt("Categorys_Id")));
+							pack.setOrder(oD.getEntity(rs.getInt("Orders_Id")));
 						}
 						rs.close();
 						pre.close();
@@ -180,9 +184,35 @@ public class PackageDAO implements IPackagesDAO {
 	}
 
 	@Override
-	public List<PackageBox> getAllPackagesById(long id) {
+	public List<PackageBox> getAllPackages(long id) {
+
 		List<PackageBox> allPackages = new ArrayList<PackageBox>();
 
+		BaseDAO dao = new BaseDAO();
+		try {
+			ResultSet rs = dao.getResultSet("SELECT * FROM postmodel.packages");
+
+			CategoryDAO catD = new CategoryDAO();
+			OrderDAO oD = new OrderDAO();
+			PackageBox pack = new PackageBox();
+
+			while (rs.next()) {
+
+				pack.setId(rs.getLong("id"));
+				pack.setOptions(rs.getString("options"));
+				pack.setInsuranceAmount(rs.getInt("insuranceAmount"));
+				pack.setStatus(rs.getString("status"));
+				pack.setCategory(catD.getEntity(rs.getInt("Categorys_Id")));
+				pack.setOrder(oD.getEntity(rs.getInt("Orders_Id")));
+
+				allPackages.add(pack);
+			}
+
+		} catch (Throwable e) {
+			e.printStackTrace();
+		} finally {
+			dao.closeAll();
+		}
 		return allPackages;
 	}
 

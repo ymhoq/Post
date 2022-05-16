@@ -53,7 +53,6 @@ public class RouteSheetDAO implements IRouteSheetDAO {
 
 		}
 
-
 	}
 
 	@Override
@@ -76,11 +75,15 @@ public class RouteSheetDAO implements IRouteSheetDAO {
 
 					try (ResultSet rs = pre.executeQuery()) {
 
+						CargoListDAO cListD = new CargoListDAO();
+						CarDAO carsD = new CarDAO();
+						StuffDAO sD = new StuffDAO();
+
 						while (rs.next()) {
 							routeSheet.setId(rs.getInt("id"));
-							routeSheet.getCargoList().setId(rs.getInt("CargoLists_id"));
-							routeSheet.getCar().setId(rs.getInt("Cars_idCars"));
-							routeSheet.getStuff().setId(rs.getInt("Stuffs_id"));
+							routeSheet.setCargoList(cListD.getEntity(rs.getInt("CargoLists_id")));
+							routeSheet.setCar(carsD.getEntity(rs.getInt("Cars_idCars")));
+							routeSheet.setStuff(sD.getEntity(rs.getInt("Stuffs_id")));
 						}
 						rs.close();
 						pre.close();
@@ -156,9 +159,9 @@ public class RouteSheetDAO implements IRouteSheetDAO {
 
 					pre.setLong(1, id);
 					pre.executeUpdate();
-		
-						pre.close();
-						con.close();
+
+					pre.close();
+					con.close();
 				}
 			}
 		} catch (SQLException | IOException e) {
@@ -168,11 +171,10 @@ public class RouteSheetDAO implements IRouteSheetDAO {
 
 		}
 
-
 	}
 
 	@Override
-	public List<RouteSheet> getRouteSheetById(long id) {
+	public List<RouteSheet> getAllRouteSheets(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

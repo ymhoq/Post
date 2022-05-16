@@ -32,7 +32,7 @@ public class OrderService {
 		// paymentDAO.getEntity(orderDAO.getEntity(id).getPayment().getId());
 
 		PackageDAO packagesDAO = new PackageDAO();
-		order.setPackagesId(packagesDAO.getAllPackagesById(orderDAO.getEntity(id).getId()));
+		order.setPackagesId(packagesDAO.getAllPackages(orderDAO.getEntity(id).getId()));
 		return order;
 	}
 

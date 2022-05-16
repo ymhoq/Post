@@ -6,18 +6,21 @@ public class Address {
 	private String address;
 	private String district;
 	private int postalCode;
-	private City city_id;
+	private City city;
 
 	public Address() {
-		city_id = new City();
 	}
 
-	public Address(long id, String address, String district, int postalCode, City city_id) {
+	public Address(City city) {
+		this.city = city;
+	}
+	
+	public Address(long id, String address, String district, int postalCode, City city) {
 		this.id = id;
 		this.address = address;
 		this.district = district;
 		this.postalCode = postalCode;
-		this.city_id = city_id;
+		this.city = city;
 	}
 
 	public String getDistrict() {
@@ -44,12 +47,12 @@ public class Address {
 		this.address = address;
 	}
 
-	public City getCity_id() {
-		return city_id;
+	public City getCity() {
+		return city;
 	}
 
-	public void setCity_id(City city_id) {
-		this.city_id = city_id;
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 	public int getPostalCode() {
@@ -63,7 +66,7 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", address=" + address + ", district=" + district + ", postalCode=" + postalCode
-				+ ", city_id=" + city_id.toString() + "]";
+				+ ", city=" + city.toString() + "]";
 	}
 
 }

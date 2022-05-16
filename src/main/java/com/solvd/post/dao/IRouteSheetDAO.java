@@ -7,6 +7,6 @@ import com.solvd.post.dao.models.RouteSheet;
 
 public interface IRouteSheetDAO extends IBaseDAO<RouteSheet> {
 
-	List<RouteSheet> getRouteSheetById(long id);
+	List<RouteSheet> getAllRouteSheets(long id);
 
 }

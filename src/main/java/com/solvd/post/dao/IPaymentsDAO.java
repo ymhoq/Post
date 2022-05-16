@@ -7,6 +7,6 @@ import com.solvd.post.dao.models.Payment;
 
 public interface IPaymentsDAO extends IBaseDAO<Payment> {
 
-	List<Payment> getIPaymentsById(long id);
+	List<Payment> getAllPayments(long id);
 
 }

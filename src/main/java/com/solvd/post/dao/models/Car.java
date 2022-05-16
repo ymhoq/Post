@@ -6,7 +6,8 @@ public class Car {
 	private int year;
 	private int capasity;
 
-	public Car() {}
+	public Car() {
+	}
 
 	public Car(long id, String model, int year, int capasity) {
 		this.id = id;
@@ -18,7 +19,7 @@ public class Car {
 	public int getCapasity() {
 		return capasity;
 	}
-	
+
 	public void setCapasity(int capasity) {
 		this.capasity = capasity;
 	}

@@ -60,5 +60,10 @@ public class PostalOffice implements Serializable{
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
+
+	@Override
+	public String toString() {
+		return "PostalOffice [id=" + id + ", phone=" + phone + ", type=" + type + ", address=" + address + "]";
+	}
 	
 }

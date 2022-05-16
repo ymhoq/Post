@@ -7,6 +7,6 @@ import com.solvd.post.dao.models.PostalOffice;
 
 public interface IPostalOfficesDAO extends IBaseDAO<PostalOffice> {
 
-	List<PostalOffice> getIPostalOfficesById(long id);
+	List<PostalOffice> getAllPostalOffices(long id);
 
 }

@@ -6,5 +6,5 @@ import com.solvd.post.dao.models.Order;
 
 public interface IOrdersDAO extends IBaseDAO<Order>{
 
-	List<Order> getAllOrdersByCustomer(long id);
+	List<Order> getAllOrders(long id);
 }

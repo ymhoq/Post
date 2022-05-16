@@ -79,7 +79,7 @@ public class CityDAO implements ICityDAO {
 						while (rs.next()) {
 							city.setId(rs.getInt("id"));
 							city.setCityName(rs.getString("name"));
-							city.setCountryId(countryD.getEntity(rs.getLong("Countrys_id")));
+							city.setCountry(countryD.getEntity(rs.getLong("Countrys_id")));
 									
 
 						}
@@ -171,7 +171,7 @@ public class CityDAO implements ICityDAO {
 	}
 
 	@Override
-	public List<City> getCitysById(long id) {
+	public List<City> getAllCitys(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

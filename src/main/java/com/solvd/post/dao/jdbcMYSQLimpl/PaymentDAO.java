@@ -170,7 +170,7 @@ public class PaymentDAO implements IPaymentsDAO{
 	}
 
 	@Override
-	public List<Payment> getIPaymentsById(long id) {
+	public List<Payment> getAllPayments(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

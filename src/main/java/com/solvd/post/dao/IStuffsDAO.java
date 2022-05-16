@@ -10,6 +10,6 @@ public interface IStuffsDAO extends IBaseDAO<Stuff> {
 
 	List<Stuff> getAllStuffs();
 	
-	List<Stuff> getAllStuffsByPostalOffice(PostalOffice po);
+	List<Stuff> getAllStuffsByPostalOffice(long id);
 	
 }

@@ -8,8 +8,9 @@ public class CargoList {
 	private long packages_id;
 	private List<PackageBox> packages;
 
-	public CargoList() {}
-	
+	public CargoList() {
+	}
+
 	public CargoList(long id, long packages_id, List<PackageBox> packages) {
 		this.id = id;
 		this.packages_id = packages_id;

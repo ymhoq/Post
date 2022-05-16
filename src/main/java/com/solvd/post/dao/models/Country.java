@@ -10,6 +10,8 @@ public class Country {
 
 	public Country() {
 	}
+	
+	
 
 	public Country(long id, String name, List<String> citys) {
 		this.id = id;
@@ -44,7 +46,7 @@ public class Country {
 
 	@Override
 	public String toString() {
-		return "Country [id=" + id + ", name=" + name + ", citys=" + citys + "]";
+		return "Country [id=" + id + ", name=" + name +  "]";
 	}
 
 }

@@ -6,6 +6,6 @@ import com.solvd.post.dao.models.City;
 
 public interface ICityDAO extends IBaseDAO<City>{
 
-	List<City> getCitysById(long id);
+	List<City> getAllCitys(long id);
 	
 }

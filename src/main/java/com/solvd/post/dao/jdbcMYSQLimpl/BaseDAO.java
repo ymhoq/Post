@@ -1,6 +1,5 @@
 package com.solvd.post.dao.jdbcMYSQLimpl;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class BaseDAO{
+public class BaseDAO {
 
 	private PreparedStatement statement;
 	protected ResultSet resultSet;
@@ -37,11 +36,6 @@ public class BaseDAO{
 		resultSet = statement.executeQuery();
 		return resultSet;
 	}
-	
-	
-	
-	
-	
 
 	public void closeAll() {
 		if (resultSet != null)

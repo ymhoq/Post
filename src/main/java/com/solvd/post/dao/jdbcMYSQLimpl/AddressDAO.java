@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.solvd.post.dao.IAddressDAO;
 import com.solvd.post.dao.models.Address;
+import com.solvd.post.dao.models.City;
+import com.solvd.post.dao.models.Country;
 
 public class AddressDAO extends BaseDAO implements IAddressDAO {
 
@@ -23,7 +25,7 @@ public class AddressDAO extends BaseDAO implements IAddressDAO {
 			pre.setString(1, address.getAddress());
 			pre.setString(2, address.getDistrict());
 			pre.setInt(3, address.getPostalCode());
-			pre.setLong(4, address.getCity_id().getId());
+			pre.setLong(4, address.getCity().getId());
 
 			pre.executeUpdate();
 			pre.close();
@@ -47,13 +49,14 @@ public class AddressDAO extends BaseDAO implements IAddressDAO {
 			pre.setLong(1, id);
 
 			try (ResultSet rs = pre.executeQuery()) {
-
+				CityDAO cityD = new CityDAO();
 				while (rs.next()) {
 					address = new Address();
 					address.setId(rs.getInt("id"));
 					address.setAddress(rs.getString("address"));
 					address.setDistrict(rs.getString("district"));
-					address.getCity_id().setId(rs.getLong("Citys_id"));
+					address.setPostalCode(rs.getInt("postalCode"));
+					address.setCity(cityD.getEntity(rs.getLong("Citys_id")));
 				}
 				return address;
 			}
@@ -79,15 +82,15 @@ public class AddressDAO extends BaseDAO implements IAddressDAO {
 			pre.setLong(1, id);
 
 			try (ResultSet rs = pre.executeQuery()) {
-
+				CountryDAO countyD = new CountryDAO();
 				while (rs.next()) {
 					address = new Address();
 					address.setId(rs.getInt("id"));
 					address.setAddress(rs.getString("address"));
 					address.setDistrict(rs.getString("district"));
-					address.getCity_id().setId(rs.getLong("Citys_id"));
-					address.getCity_id().setCityName(rs.getString("name"));
-					address.getCity_id().getCountry().setId(rs.getLong("Countrys_id"));
+					address.setCity(new City(rs.getLong("Citys_id"), rs.getString("name"),
+							countyD.getEntity(rs.getLong("Countrys_id"))));
+
 				}
 				return address;
 			}
@@ -114,7 +117,7 @@ public class AddressDAO extends BaseDAO implements IAddressDAO {
 			pre.setString(1, address.getAddress());
 			pre.setString(2, address.getDistrict());
 			pre.setInt(3, address.getPostalCode());
-			pre.setLong(4, address.getCity_id().getId());
+			pre.setLong(4, address.getCity().getId());
 			pre.setLong(5, address.getId());
 			pre.executeUpdate();
 

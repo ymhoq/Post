@@ -7,5 +7,5 @@ import com.solvd.post.dao.models.CargoList;
 
 public interface ICargoListDAO extends IBaseDAO<CargoList> {
 
-	List<CargoList> getCargoListById(int id);
+	List<CargoList> getAllCargoLists(int id);
 }

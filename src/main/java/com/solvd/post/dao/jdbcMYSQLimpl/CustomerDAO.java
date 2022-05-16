@@ -75,12 +75,12 @@ public class CustomerDAO implements ICustomersDAO {
 					pre.setLong(1, id);
 
 					try (ResultSet rs = pre.executeQuery()) {
-
+						AddressDAO aD = new AddressDAO();
 						while (rs.next()) {
 							customer.setId(rs.getInt("id"));
 							customer.setFirstName(rs.getString("firstName"));
 							customer.setLastName(rs.getString("lastName"));
-							customer.getAddress().setId(rs.getInt("Address_id"));
+							customer.setAddress(aD.getEntity(rs.getInt("Address_id")));
 
 						}
 						rs.close();
@@ -173,7 +173,7 @@ public class CustomerDAO implements ICustomersDAO {
 	}
 
 	@Override
-	public List<Customer> getCustomersById(long id) {
+	public List<Customer> getAllCustomers(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

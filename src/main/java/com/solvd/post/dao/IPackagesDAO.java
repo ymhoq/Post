@@ -7,5 +7,5 @@ import com.solvd.post.dao.models.PackageBox;
 
 public interface IPackagesDAO extends IBaseDAO<PackageBox>{
 
-	List<PackageBox> getAllPackagesById(long id);
+	List<PackageBox> getAllPackages(long id);
 }

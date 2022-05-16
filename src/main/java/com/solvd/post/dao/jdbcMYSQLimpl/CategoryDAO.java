@@ -173,7 +173,7 @@ public class CategoryDAO implements ICategorysDAO {
 	}
 
 	@Override
-	public List<Category> getCategoryById(int id) {
+	public List<Category> getAllCategorys(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

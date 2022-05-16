@@ -15,7 +15,7 @@ public class Order {
 
 	public Order() {
 	}
-	
+
 	public Order(Order order) {
 		this.id = order.getId();
 		this.createDate = order.getCreateDate();
