@@ -3,6 +3,7 @@ package main;
 import com.solvd.post.dao.models.Address;
 import com.solvd.post.dao.service.OrderService;
 import com.solvd.post.parsers.dom.TestDOM;
+import com.solvd.post.parsers.jackson.TestJackson;
 import com.solvd.post.parsers.jaxb.TextJAXB;
 
 import java.sql.SQLException;
@@ -31,6 +32,8 @@ public class Executer {
 
 		// TextJAXB.writerToXML();
 		// System.out.println(TextJAXB.readerFromXml());
+		
+		TestJackson.parseCars().forEach(System.out::println);
 	}
 
 }

@@ -24,7 +24,6 @@ public class TextJAXB {
 	public static void writerToXML() {
 
 		try {
-			System.out.println();
 
 			File file = new File("./postalOfficeJAXB" + postalOffice.getId() + ".xml");
 

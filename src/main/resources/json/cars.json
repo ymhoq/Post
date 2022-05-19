@@ -1,0 +1,25 @@
+{
+
+ "name": "cargo_cars",
+ "cars": [
+ 
+ {
+ "id": 1,
+ "model": "Volvo",
+ "year": 1999,
+ "capasity": 20
+ },
+ 
+ {
+ "id": 2,
+ "model": "Volvo",
+ "year": 2002,
+ "capasity": 26
+ }
+ 
+ 
+ 
+ 
+]
+
+}

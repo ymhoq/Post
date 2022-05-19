@@ -47,4 +47,10 @@ public class Car {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "Car [id=" + id + ", model=" + model + ", year=" + year + ", capasity=" + capasity + "]";
+	}
+	
 }
