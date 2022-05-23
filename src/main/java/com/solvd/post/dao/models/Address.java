@@ -66,7 +66,7 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", address=" + address + ", district=" + district + ", postalCode=" + postalCode
-				+ ", city=" + city.toString() + "]";
+				+ ", city=" + city.toString() + "]\n";
 	}
 
 }

@@ -76,8 +76,8 @@ public class AddressDAO extends BaseDAO implements IAddressDAO {
 		BaseDAO dao = new BaseDAO();
 
 		try (PreparedStatement pre = dao.getConnection().prepareStatement(
-				"SELECT address.id, address.Citys_id, citys.id, citys.name, citys.Countrys_id FROM address \r\n"
-						+ "INNER JOIN citys ON address.Citys_id=citys.id WHERE address.id = ?;")) {
+				"SELECT address.id, address.address, address.district, address.postalCode, address.Citys_id, citys.id, citys.name, citys.Countrys_id FROM address \r\n"
+				+ "INNER JOIN citys ON address.Citys_id=citys.id WHERE address.id = ?;")) {
 
 			pre.setLong(1, id);
 
@@ -88,6 +88,7 @@ public class AddressDAO extends BaseDAO implements IAddressDAO {
 					address.setId(rs.getInt("id"));
 					address.setAddress(rs.getString("address"));
 					address.setDistrict(rs.getString("district"));
+					address.setPostalCode(rs.getInt("postalCode"));
 					address.setCity(new City(rs.getLong("Citys_id"), rs.getString("name"),
 							countyD.getEntity(rs.getLong("Countrys_id"))));
 

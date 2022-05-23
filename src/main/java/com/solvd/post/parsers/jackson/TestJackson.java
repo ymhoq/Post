@@ -1,55 +1,68 @@
 package com.solvd.post.parsers.jackson;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import com.solvd.post.dao.models.Car;
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.solvd.post.dao.jdbcMYSQLimpl.AddressDAO;
+import com.solvd.post.dao.models.Address;
 
 public class TestJackson {
 
-	
-	
-	public static List<Car> parseCars() {
-		
-		
-		
-		JSONParser parser = new JSONParser();
-		List<Car> carList = new ArrayList<>();
-		
-		try(FileReader reader = new FileReader("src/main/resources/json/cars.json"))
-		{
-			
-			JSONObject root = (JSONObject)parser.parse(reader);
-			
-			String name = (String) root.get("name");
-			
-			JSONArray carsJSON =  (JSONArray) root.get("cars");
-			
-			
-			
-			for (Object item : carsJSON) {
-				JSONObject carJSONObj = (JSONObject) item;	 
-				
-				long idCar = (long) carJSONObj.get("id");
-				String modelCar = (String) carJSONObj.get("model");
-				long yearCar = (long) carJSONObj.get("year");
-				long capasityCar = (long) carJSONObj.get("capasity");
-				Car car = new Car(idCar, modelCar, (int)yearCar, (int)capasityCar);
-				carList.add(car);
-				
-			}
-			
+	public static List<Address> readFromJSON(long id) {
+
+		ObjectMapper om = new ObjectMapper();
+		try {
+			CollectionType type = om.getTypeFactory().constructCollectionType(List.class, Address.class);
+
+			List<Address> address = om.readValue(new File("src/main/resources/json/alladdress.json"), type);
+
+			if (address.isEmpty()) {
+			} else
+				return address;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
-		return carList;
+
+		}
+
+		return null;
+
 	}
 
-	
+	public static void writeToJSON() {
+
+		AddressDAO aDAO = new AddressDAO();
+		aDAO.getAllAddress();
+
+		ObjectMapper om = new ObjectMapper();
+
+		File file = new File("src/main/resources/json/alladdress.json");
+		if (!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		try {
+			om.writeValue(file, aDAO.getAllAddress());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+	}
+
 }
