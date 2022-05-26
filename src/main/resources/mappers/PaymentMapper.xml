@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.post.dao.IPaymentDAO">
+    <resultMap id="paymentResultMap" type="Payment">
+        <id property="id" column="id" javaType="long"/>
+        <result property="amount" column="amount" javaType="short"/>
+        <result property="paymentDate" column="paymentDate" javaType="Date"/>
+    </resultMap>
+
+    <select id="getEntity" resultMap="paymentResultMap">
+        SELECT * FROM payments WHERE id = #{id}
+    </select>
+</mapper>
