@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CarMapper">
+
+	<resultMap type="Car" id="carResultMap">
+	    <result property="id" column="idCars" javaType="int"/>
+		<result property="model" column="model" />
+		<result property="year" column="year" />
+		<result property="capasity" column="capasity" />
+	</resultMap>
+
+	<select id="findCarById" parameterType="int" resultType="Car">
+        SELECT *
+         FROM postmodel.cars WHERE idCars=${id}
+    </select>
+
+<insert id="insertCar" parameterType="Car">
+    	INSERT INTO postmodel.cars(model, year, capasity)
+    	VALUE(#{model}, ${year}, ${capasity})
+    </insert>
+    
+    <delete id="deleteCar" parameterType="Car">
+    	DELETE FROM postmodel.cars WHERE idCars=${id}
+    </delete>
+    
+    <update id="updateCar" parameterType="Car">
+    	UPDATE postmodel.cars SET model=#{model} WHERE idCars=${id}
+    </update>
+    
+    <select id="multiSearch" resultType="Car">
+    	SELECT * FROM postmodel.cars
+    </select>
+
+
+
+</mapper>
