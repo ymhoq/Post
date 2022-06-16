@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class MyConn {
+public final class MyConn {
 
 	private static MyConn instance;
 

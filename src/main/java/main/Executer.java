@@ -13,6 +13,8 @@ import com.solvd.post.parsers.jackson.TestJackson;
 import com.solvd.post.parsers.jaxb.TextJAXB;
 import com.solvd.post.parsers.json.TestJSON;
 
+import listener.TestPaymentListener;
+
 import java.sql.SQLException;
 
 import org.apache.ibatis.session.SqlSession;
@@ -41,10 +43,6 @@ public class Executer {
 		//  aDAO.removeEntity(11);
 
 		//  aDAO.getAllAddress().forEach(LOGGER::info);
-         
-		
-		
-		
 		
         //	TestDOM.mainDOM();
 		
@@ -72,4 +70,6 @@ public class Executer {
 		}
 	}
 
+	//TestPaymentListener.test();
+	
 }
